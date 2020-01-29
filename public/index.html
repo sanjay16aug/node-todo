@@ -131,14 +131,20 @@
 			console.log("You just clicked this node:", node);
 		}
 
-		$(document).ready(function () {
-			console.log("ready!");
-			$(".chartData").on('click', function(){
-				var text = $( this ).text();
-				$("#code").val(text);
-				drawGraph();
-			});
-		});
+		function mydraw(text) {
+			$("#code").val(text);
+			drawGraph();
+		}
+
+		// $(document).ready(function () {
+		// 	console.log("ready!");
+		// 	$(".chartData").on('click', function(){
+		// 		var text = $( this ).text();
+		// 		$("#code").val(text);
+		// 		drawGraph();
+		// 	});
+			
+		// });
 
 	</script>
 </head>
@@ -160,9 +166,9 @@
 				<!-- ng-repeat="todo in todos" -->
 				<!-- ng-click="deleteTodo(todo._id)" -->
 				<div class="checkbox" ng-repeat="todo in todos">
-					<label class="chartData">
+					<label class="chartData"  onclick="mydraw(todo.text)">
 						<!-- <input type="checkbox" ng-click="deleteTodo(todo._id)">-->
-						{{ todo.text }} 
+						{{ $index }}	{{ todo.text }} 
 					</label>
 				</div>
 
@@ -197,7 +203,7 @@
 		</div>
 		<div><button id="run" type="button">Run</button></div>
 		<div id="canvas"></div>
-		<textarea id="code" style="width: 100%;" rows="11" style="visibility: hidden;">
+		<textarea id="code" style="width: 100%;visibility: hidden;" rows="11">
 			st=>start: Start|past:>http://www.google.com[blank]
 			e=>end: End:>http://www.google.com
 			op1=>operation: My Operation|past:$myFunction
