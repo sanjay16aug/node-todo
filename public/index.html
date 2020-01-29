@@ -138,7 +138,7 @@
 		function mydraw(elmnt) {
 		
 		var ss = elmnt.innerHTML;
-		var sds = ss.replace(/\n/g, '<br>\n');
+		var sds = ss.replace( new RegExp( "\n", "g" ),"<br>")
 		console.log(sds);
 			drawGraph(sds);
 		}
