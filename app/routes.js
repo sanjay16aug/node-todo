@@ -7,7 +7,7 @@ function getTodos(res) {
         if (err) {
             res.send(err);
         }
-
+        console.log('get all data from mongodb');
         res.json(todos); // return all todos in JSON format
     });
 };
@@ -23,7 +23,7 @@ module.exports = function (app) {
 
     // create todo and send back all todos after creation
     app.post('/api/todos', function (req, res) {
-
+        console.log('create log');
         // create a todo, information comes from AJAX request from Angular
         Todo.create({
             text: req.body.text,
@@ -40,6 +40,7 @@ module.exports = function (app) {
 
     // delete a todo
     app.delete('/api/todos/:todo_id', function (req, res) {
+        console.log('delete log');
         Todo.remove({
             _id: req.params.todo_id
         }, function (err, todo) {
@@ -52,6 +53,7 @@ module.exports = function (app) {
 
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
+        console.log('serve index page');
         res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
 };

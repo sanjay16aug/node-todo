@@ -44,6 +44,11 @@
 	<script>
 
 		window.onload = function () {
+			drawGraph();
+		};
+
+
+		function drawGraph() {
 			var btn = document.getElementById("run"),
 				cd = document.getElementById("code"),
 				chart;
@@ -57,11 +62,8 @@
 
 				chart = flowchart.parse(code);
 				chart.drawSVG('canvas', {
-					// 'x': 30,
-					// 'y': 50,
 					'line-width': 3,
-					'maxWidth': 3,//ensures the flowcharts fits within a certian width
-					'line-length': 50,
+					'maxWidth': 100,
 					'text-margin': 10,
 					'font-size': 14,
 					'font': 'normal',
@@ -86,13 +88,36 @@
 						}
 					},
 					'flowstate': {
-						'past': { 'fill': '#CCCCCC', 'font-size': 12 },
-						'current': { 'fill': 'yellow', 'font-color': 'red', 'font-weight': 'bold' },
-						'future': { 'fill': '#FFFF99' },
-						'request': { 'fill': 'blue' },
-						'invalid': { 'fill': '#444444' },
-						'approved': { 'fill': '#58C4A3', 'font-size': 12, 'yes-text': 'APPROVED', 'no-text': 'n/a' },
-						'rejected': { 'fill': '#C45879', 'font-size': 12, 'yes-text': 'n/a', 'no-text': 'REJECTED' }
+						'past': {
+							'fill': '#CCCCCC',
+							'font-size': 12
+						},
+						'current': {
+							'fill': 'yellow',
+							'font-color': 'red',
+							'font-weight': 'bold'
+						},
+						'future': {
+							'fill': '#FFFF99'
+						},
+						'request': {
+							'fill': 'blue'
+						},
+						'invalid': {
+							'fill': '#444444'
+						},
+						'approved': {
+							'fill': '#58C4A3',
+							'font-size': 12,
+							'yes-text': 'APPROVED',
+							'no-text': 'n/a'
+						},
+						'rejected': {
+							'fill': '#C45879',
+							'font-size': 12,
+							'yes-text': 'n/a',
+							'no-text': 'REJECTED'
+						}
 					}
 				});
 
@@ -100,12 +125,20 @@
 					alert('info here');
 				});
 			})();
-
-		};
+		}
 
 		function myFunction(event, node) {
 			console.log("You just clicked this node:", node);
 		}
+
+		$(document).ready(function () {
+			console.log("ready!");
+			$(".chartData").click(function () {
+				var text = $( this ).text();
+				$("#code").val(text);
+				drawGraph();
+			});
+		});
 
 	</script>
 </head>
@@ -115,22 +148,23 @@
 	<div class="container">
 
 		<div class="jumbotron text-center">
-			<h1>Flowchart Log Analysis Graph System 
+			<h1>Flowchart Log Analysis Graph System
 			</h1>
 		</div>
 
-	
+
 		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
 
- <!-- ng-repeat="todo in todos" -->
-	 <!-- ng-click="deleteTodo(todo._id)" -->
-		<div class="checkbox"  ng-repeat="todo in todos">
-					<label>
-						<input type="checkbox">{{ todo.text }}
+				<!-- ng-repeat="todo in todos" -->
+				<!-- ng-click="deleteTodo(todo._id)" -->
+				<div class="checkbox" ng-repeat="todo in todos">
+					<label class="chartData">
+						<!-- <input type="checkbox" ng-click="deleteTodo(todo._id)">-->
+						{{ todo.text }} 
 					</label>
-			</div>
+				</div>
 
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
@@ -142,17 +176,18 @@
 		<div id="todo-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form>
-					<div class="form-group"> 
+					<div class="form-group">
 
-		
-		 <input type="text" class="form-control input-lg text-center" placeholder="Add Flow" ng-model="formData.text">
+
+						<input type="text" class="form-control input-lg text-center" placeholder="Add Flow"
+							ng-model="formData.text">
 					</div>
 
-	
-		<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
 				</form>
 			</div>
-		</div> 
+		</div>
 
 		<!-- <div class="text-center text-muted">
 			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
@@ -161,7 +196,11 @@
 
 
 		<div>
-			<textarea id="code" style="width: 100%;" rows="11">
+
+		</div>
+		<div><button id="run" type="button">Run</button></div>
+		<div id="canvas"></div>
+		<textarea id="code" style="width: 100%;" rows="11" style="visibility: hidden;">
 			st=>start: Start|past:>http://www.google.com[blank]
 			e=>end: End:>http://www.google.com
 			op1=>operation: My Operation|past:$myFunction
@@ -183,9 +222,6 @@
 			para(path2, right)->op2->e
 			
 			st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})@>c2({"stroke":"Red"})@>op2({"stroke":"Red"})@>e({"stroke":"Red"})</textarea>
-		</div>
-		<div><button id="run" type="button">Run</button></div>
-		<div id="canvas"></div>
 
 	</div>
 
