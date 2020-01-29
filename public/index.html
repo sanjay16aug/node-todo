@@ -168,7 +168,7 @@
 				<!-- ng-click="deleteTodo(todo._id)" -->
 				<div class="checkbox" ng-repeat="todo in todos">
 					<ul>
-						<li class="chartData"  onclick="mydraw(todo.text)">
+						<li class="chartData"  ng-click="mydraw(todo.text)">
 						{{ todo.text }}
 						</li> <span  ng-click="deleteTodo(todo._id)" >Delete Flow</span>
 					</ul>
