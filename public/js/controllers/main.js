@@ -11,6 +11,7 @@ angular.module('todoController', [])
 		Todos.get()
 			.success(function(data) {
 				$scope.todos = data;
+				drawGraph(data[0].text);
 				$scope.loading = false;
 			});
 
