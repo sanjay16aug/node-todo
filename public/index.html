@@ -40,7 +40,7 @@
 	<script src="js/core.js"></script> <!-- load our main application -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="//flowchart.js.org/flowchart-latest.js"></script>
+	<script src="http://flowchart.js.org/flowchart-latest.js"></script>
 	<script>
 
 		window.onload = function () {
@@ -114,21 +114,19 @@
 <body ng-controller="mainController">
 	<div class="container">
 
-		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
 			<h1>Flowchart Log Analysis Graph System 
-				<!-- <span class="label label-info">{{ todos.length }}</span> -->
 			</h1>
 		</div>
 
-		<!-- TODO LIST -->
-		<!-- <div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4"> -->
+	
+		<div id="todo-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
 
 
 
-		<!-- LOOP OVER THE TODOS IN $scope.todos -->
-		<!-- <div class="checkbox" ng-repeat="todo in todos">
+	
+		<div class="checkbox" ng-repeat="todo in todos">
 					<label>
 						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
 					</label>
@@ -139,20 +137,19 @@
 				</p>
 
 			</div>
-		</div> -->
+		</div>
 
-		<!-- FORM TO CREATE TODOS -->
-		<!-- <div id="todo-form" class="row">
+		<div id="todo-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form>
-					<div class="form-group"> -->
+					<div class="form-group"> 
 
-		<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-		<!-- <input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
-					</div> -->
+		
+		 <input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+					</div>
 
-		<!-- createToDo() WILL CREATE NEW TODOS -->
-		<!-- <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+	
+		<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
 				</form>
 			</div>
 		</div> -->
