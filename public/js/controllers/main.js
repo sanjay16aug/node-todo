@@ -11,7 +11,7 @@ angular.module('todoController', [])
 		Todos.get()
 			.success(function(data) {
 				$scope.todos = data;
-				drawGraph(data[0].text);
+				//drawGraph(todos[0].text);
 				$scope.loading = false;
 			});
 
@@ -51,6 +51,11 @@ angular.module('todoController', [])
 
 		$scope.mydraw = function(data) {
 			drawGraph(data);
+		};
+
+		$scope.drawGraphData = function() {
+			console.log($scope.todos);
+			drawGraph($scope.todos[0].text);
 		};
 		
 

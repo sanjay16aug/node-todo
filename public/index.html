@@ -44,7 +44,7 @@
 	<script>
 
 		window.onload = function () {
-		//	drawGraph(undefined);
+			//	drawGraph(undefined);
 		};
 
 
@@ -59,12 +59,12 @@
 				if (chart) {
 					chart.clean();
 				}
-				if(data == undefined){
+				if (data == undefined) {
 					chart = flowchart.parse(code);
-				}else{
+				} else {
 					chart = flowchart.parse(data);
 				}
-				
+
 				chart.drawSVG('canvas', {
 					'line-width': 3,
 					'maxWidth': 100,
@@ -143,8 +143,23 @@
 	<div class="container">
 
 		<div class="jumbotron text-center">
-			<h1>Flowchart Log Analysis Graph System
-			</h1>
+			<h2>Flowchart Log Analysis Graph System
+			</h2>
+		</div>
+		<div style="padding: 10px;background-color: #eeeeee;">
+			<form>
+				<div class="form-row align-items-center">
+					<div class="col-sm-3 my-1">
+						<label class="sr-only" for="inlineFormInputName">Name</label>
+						<input type="text" class="form-control" id="inlineFormInputName" placeholder="PAN0110037409449">
+					</div>
+
+
+					<div class="col-auto my-1">
+						<button type="submit" class="btn btn-primary" ng-click="drawGraphData()">Submit</button>
+					</div>
+				</div>
+			</form>
 		</div>
 
 
@@ -155,12 +170,12 @@
 				<!-- ng-repeat="todo in todos" -->
 				<!-- ng-click="deleteTodo(todo._id)" -->
 				<div class="checkbox" ng-repeat="todo in todos">
-					<ul >
-						<li class="chartData"  ng-click="mydraw(todo.text)">
-						{{ todo.text }}
-						<!-- </li> <span  ng-click="deleteTodo(todo._id)" >Delete Flow</span> -->
-					</ul >
-					
+					<ul>
+						<li class="chartData" ng-click="mydraw(todo.text)">
+							{{ todo.text }}
+							<!-- </li> <span  ng-click="deleteTodo(todo._id)" >Delete Flow</span> -->
+					</ul>
+
 				</div>
 
 				<p class="text-center" ng-show="loading">
@@ -193,8 +208,9 @@
 		<div>
 
 		</div>
-		<div><button id="run" type="submit" class="btn btn-primary btn-lg"  style="visibility: hidden;" ng-click="createTodo()">Run</button></div>
-	
+		<div><button id="run" type="submit" class="btn btn-primary btn-lg" style="visibility: hidden;"
+				ng-click="createTodo()">Run</button></div>
+
 		<textarea id="code" style="width: 100%;visibility: hidden;" rows="11">
 			st=>start: Start|past:>http://www.google.com[blank]
 			e=>end: End:>http://www.google.com
