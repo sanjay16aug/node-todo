@@ -139,9 +139,9 @@
 		
 		var ss = elmnt.innerText;
 		var sds = ss.replace( new RegExp( "\n", "g" ),"<br>")
-		console.log(sds);
-		$("#canvasdata").html(sds);
-			canvasdata(sds);
+			console.log(sds);
+			$("#canvasdata").html(ss);
+			drawGraph(ss);
 		}
 
 	</script>
