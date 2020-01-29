@@ -135,18 +135,6 @@
 			console.log("You just clicked this node:", node);
 		}
 
-		function mydraw(elmnt) {
-		
-		// var ss = elmnt.innerText;
-		console.log(elmnt)
-		// var data = ss.split('\n');
-		// var getData = data.join("↵");
-		// //var sds = ss.replace( new RegExp( "\n", "g" ),"<br>")
-		// 	console.log(sds);
-		// 	$("#canvasdata").html(ss);
-			drawGraph(elmnt);
-		}
-
 	</script>
 </head>
 <!-- SET THE CONTROLLER -->
@@ -161,17 +149,17 @@
 
 
 		<div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
+			<div class="col-sm-4 col-sm-offset-4" style="display:none">
 
 
 				<!-- ng-repeat="todo in todos" -->
 				<!-- ng-click="deleteTodo(todo._id)" -->
 				<div class="checkbox" ng-repeat="todo in todos">
-					<ul>
+					<ul >
 						<li class="chartData"  ng-click="mydraw(todo.text)">
 						{{ todo.text }}
-						</li> <span  ng-click="deleteTodo(todo._id)" >Delete Flow</span>
-					</ul>
+						<!-- </li> <span  ng-click="deleteTodo(todo._id)" >Delete Flow</span> -->
+					</ul >
 					
 				</div>
 
@@ -206,7 +194,7 @@
 		</div>
 		<div><button id="run" type="button">Run</button></div>
 		<div id="canvas"></div>
-		<textarea id="code" style="width: 100%;visibility: hidden;" rows="11">
+		<!-- <textarea id="code" style="width: 100%;visibility: hidden;" rows="11">
 			st=>start: Start|past:>http://www.google.com[blank]
 			e=>end: End:>http://www.google.com
 			op1=>operation: My Operation|past:$myFunction
@@ -227,10 +215,9 @@
 			para(path1, bottom)->sub1(left)->op1
 			para(path2, right)->op2->e
 			
-			st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})@>c2({"stroke":"Red"})@>op2({"stroke":"Red"})@>e({"stroke":"Red"})</textarea>
+			st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})@>c2({"stroke":"Red"})@>op2({"stroke":"Red"})@>e({"stroke":"Red"})</textarea> -->
 
 	</div>
-	<div id="canvasdata"></div>
 
 </body>
 
