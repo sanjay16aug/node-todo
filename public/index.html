@@ -140,7 +140,8 @@
 		var ss = elmnt.innerText;
 		var sds = ss.replace( new RegExp( "\n", "g" ),"<br>")
 		console.log(sds);
-			drawGraph(sds);
+		$("#canvasdata").html(sds);
+			canvasdata(sds);
 		}
 
 	</script>
@@ -226,6 +227,7 @@
 			st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})@>c2({"stroke":"Red"})@>op2({"stroke":"Red"})@>e({"stroke":"Red"})</textarea>
 
 	</div>
+	<div id="canvasdata"></div>
 
 </body>
 
