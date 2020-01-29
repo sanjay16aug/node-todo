@@ -133,7 +133,9 @@
 
 		function mydraw(elmnt) {
 		console.log(elmnt.innerText)
-		$("#code").val(elmnt.innerText);
+		var ss = elmnt.innerText;
+		var sds = ss.split("\n");
+		$("#code").val(sds);
 			drawGraph();
 		}
 
@@ -169,9 +171,8 @@
 				<div class="checkbox" ng-repeat="todo in todos">
 					<ul>
 						<li class="chartData"  onclick="mydraw(this)">
-							<!-- <input type="checkbox" ng-click="deleteTodo(todo._id)">-->
-						{{ todo.text }} 
-						</li>
+						{{ todo.text }}
+						</li> <span  ng-click="deleteTodo(todo._id)" >Delete Flow</span>
 					</ul>
 					
 				</div>
