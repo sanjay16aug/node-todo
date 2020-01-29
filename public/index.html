@@ -124,13 +124,13 @@
 			<div class="col-sm-4 col-sm-offset-4">
 
 
-
-	
-		<div class="checkbox" ng-repeat="todo in todos">
+ <!-- ng-repeat="todo in todos" -->
+	 <!-- ng-click="deleteTodo(todo._id)" -->
+		<div class="checkbox" *ngFor="let todo of todos; let i=index">
 					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+						<input type="checkbox"> Flow {{ i }} {{ todo.text }}
 					</label>
-				</div>
+			</div>
 
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
@@ -145,14 +145,14 @@
 					<div class="form-group"> 
 
 		
-		 <input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+		 <input type="text" class="form-control input-lg text-center" placeholder="Add Flow" ng-model="formData.text">
 					</div>
 
 	
 		<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
 				</form>
 			</div>
-		</div> -->
+		</div> 
 
 		<!-- <div class="text-center text-muted">
 			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
@@ -160,7 +160,8 @@
 		</div> -->
 
 
-		<div><textarea id="code" style="width: 100%;" rows="11">
+		<div>
+			<textarea id="code" style="width: 100%;" rows="11">
 			st=>start: Start|past:>http://www.google.com[blank]
 			e=>end: End:>http://www.google.com
 			op1=>operation: My Operation|past:$myFunction
