@@ -44,11 +44,11 @@
 	<script>
 
 		window.onload = function () {
-			drawGraph();
+			drawGraph(undefined);
 		};
 
 
-		function drawGraph() {
+		function drawGraph(data) {
 			var btn = document.getElementById("run"),
 				cd = document.getElementById("code"),
 				chart;
@@ -59,8 +59,12 @@
 				if (chart) {
 					chart.clean();
 				}
-
-				chart = flowchart.parse(code);
+				if(data == undefined){
+					chart = flowchart.parse(code);
+				}else{
+					chart = flowchart.parse(data);
+				}
+				
 				chart.drawSVG('canvas', {
 					'line-width': 3,
 					'maxWidth': 100,
@@ -132,11 +136,12 @@
 		}
 
 		function mydraw(elmnt) {
-		console.log(elmnt.innerText)
+		
 		var ss = elmnt.innerHTML;
+		console.log(ss);
 		// var sds = ss.replace(/\n/g, '<br>\n');
-		$("#code").val(ss);
-			drawGraph();
+	//	$("#code").val(ss);
+			drawGraph(ss);
 		}
 
 		// $(document).ready(function () {
