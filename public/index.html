@@ -131,8 +131,9 @@
 			console.log("You just clicked this node:", node);
 		}
 
-		function mydraw(text) {
-			$("#code").val(text);
+		function mydraw(elmnt) {
+		console.log(elmnt.innerText)
+		$("#code").val(elmnt.innerText);
 			drawGraph();
 		}
 
@@ -166,10 +167,13 @@
 				<!-- ng-repeat="todo in todos" -->
 				<!-- ng-click="deleteTodo(todo._id)" -->
 				<div class="checkbox" ng-repeat="todo in todos">
-					<label class="chartData"  onclick="mydraw(todo.text)">
-						<!-- <input type="checkbox" ng-click="deleteTodo(todo._id)">-->
-						{{ $index }}	{{ todo.text }} 
-					</label>
+					<ul>
+						<li class="chartData"  onclick="mydraw(this)">
+							<!-- <input type="checkbox" ng-click="deleteTodo(todo._id)">-->
+						{{ todo.text }} 
+						</li>
+					</ul>
+					
 				</div>
 
 				<p class="text-center" ng-show="loading">
