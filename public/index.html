@@ -135,24 +135,11 @@
 			console.log("You just clicked this node:", node);
 		}
 
-		function mydraw(elmnt) {
-		
-		var ss = elmnt.innerHTML;
-		console.log(ss);
-		// var sds = ss.replace(/\n/g, '<br>\n');
-	//	$("#code").val(ss);
+		function mydraw(elmnt) {		
+			var ss = elmnt.innerHTML;
+			console.log(ss);
 			drawGraph(ss);
 		}
-
-		// $(document).ready(function () {
-		// 	console.log("ready!");
-		// 	$(".chartData").on('click', function(){
-		// 		var text = $( this ).text();
-		// 		$("#code").val(text);
-		// 		drawGraph();
-		// 	});
-			
-		// });
 
 	</script>
 </head>
