@@ -135,10 +135,12 @@
 			console.log("You just clicked this node:", node);
 		}
 
-		function mydraw(elmnt) {		
-			var ss = elmnt.innerHTML;
-			console.log(ss);
-			drawGraph(ss);
+		function mydraw(elmnt) {
+		
+		var ss = elmnt.innerHTML;
+		var sds = ss.replace(/\n/g, '<br>\n');
+		console.log(sds);
+			drawGraph(sds);
 		}
 
 	</script>
