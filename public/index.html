@@ -126,9 +126,9 @@
 
  <!-- ng-repeat="todo in todos" -->
 	 <!-- ng-click="deleteTodo(todo._id)" -->
-		<div class="checkbox" *ngFor="let todo of todos; let i=index">
+		<div class="checkbox"  ng-repeat="todo in todos">
 					<label>
-						<input type="checkbox"> Flow {{ i }} {{ todo.text }}
+						<input type="checkbox">{{ todo.text }}
 					</label>
 			</div>
 
