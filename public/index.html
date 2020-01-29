@@ -133,9 +133,9 @@
 
 		function mydraw(elmnt) {
 		console.log(elmnt.innerText)
-		var ss = elmnt.innerText;
-		var sds = ss.replace(/\n/g, '<br>\n');
-		$("#code").val(sds);
+		var ss = elmnt.innerHTML;
+		// var sds = ss.replace(/\n/g, '<br>\n');
+		$("#code").val(ss);
 			drawGraph();
 		}
 
