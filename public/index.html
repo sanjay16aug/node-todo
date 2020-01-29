@@ -133,7 +133,7 @@
 
 		$(document).ready(function () {
 			console.log("ready!");
-			$(".chartData").live('click', function() {
+			$(".chartData").on('click', function(){
 				var text = $( this ).text();
 				$("#code").val(text);
 				drawGraph();
