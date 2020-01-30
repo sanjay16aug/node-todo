@@ -8,6 +8,23 @@ function getTodos(res) {
             res.send(err);
         }
         console.log('get all data from mongodb');
+        console.log('isForeignProfileExist=>operation: Check foreign Country Profile Exist false');
+        console.log('isFARegistered=>condition: Is FA Registered')
+        console.log('isSubmit=>condition: isSubmi')
+        console.log('isProhibitedCountryProfileExist=>operation: Check Prohibited Country Profile Exist true')
+        console.log('isCurrentStateEDDReq=>condition: Is Current State EDD Required')
+        console.log('eddECRRRiskRank=>condition: Is ECRR risk rank high')
+        console.log('eddInsertTrigger=>operation: inserting edd trigger')
+        console.log('edd=>condition: edd required')
+        console.log('foriegn=>condition: foriegn or prohibited or edd block type')
+        console.log('changeToSave=>operation: change to save')
+        console.log('isAutoApproval=>condition: is auto approval')
+        console.log('st=>start: Start|past')
+        console.log('e=>end: Sucess')
+        console.log('cads=>operation: Calling CADS service to save account|approved')
+        console.log('edbAcc=>operation: Account Save SP Sucess |rejected')
+        console.log('edbParty=>operation: Party Save SP Sucess |rejected')
+        console.log('st(right)->isForeignProfileExist->isFARegistered(yes)->isSubmit(yes)->isProhibitedCountryProfileExist->isCurrentStateEDDReq(yes)->eddECRRRiskRank(yes)->eddInsertTrigger->edd(yes)->foriegn(yes)->changeToSave->isAutoApproval(false)->cads->edbAcc(right)->edbParty(right)->e');
         res.json(todos); // return all todos in JSON format
     });
 };
