@@ -1,1 +1,1 @@
-angular.module('flagsApp', ['todoController', 'todoService']);
+angular.module('scotchTodo', ['todoController', 'todoService']);
