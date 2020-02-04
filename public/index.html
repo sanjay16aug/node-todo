@@ -1,22 +1,35 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="scotchTodo">
+<html ng-app="flagsApp">
+
 <head>
 	<!-- META -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Node/Angular Todo App</title>
+	<title>FLAGS APP</title>
 
 	<!-- SCROLLS -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<!-- load bootstrap -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<style>
-		html 					{ overflow-y:scroll; }
-		body 					{ padding-top:50px; }
-		#todo-list 				{ margin-bottom:30px; }
-		#todo-form 	 			{ margin-bottom:50px; }
+		html {
+			overflow-y: scroll;
+		}
+
+		body {
+			padding-top: 50px;
+		}
+
+		#todo-list {
+			margin-bottom: 30px;
+		}
+
+		#todo-form {
+			margin-bottom: 50px;
+		}
 	</style>
 
 	<!-- SPELLS -->
@@ -25,28 +38,144 @@
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
 	<script src="js/core.js"></script> <!-- load our main application -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//flowchart.js.org/flowchart-latest.js"></script>
+	<script>
 
+		window.onload = function () {
+			//	drawGraph(undefined);
+		};
+
+
+		function drawGraph(data) {
+			var btn = document.getElementById("run"),
+				cd = document.getElementById("code"),
+				chart;
+
+			(btn.onclick = function () {
+				var code = cd.value;
+
+				if (chart) {
+					chart.clean();
+				}
+				if (data == undefined) {
+					chart = flowchart.parse(code);
+				} else {
+					chart = flowchart.parse(data);
+				}
+
+				chart.drawSVG('canvas', {
+					'line-width': 3,
+					'maxWidth': 100,
+					'text-margin': 10,
+					'font-size': 14,
+					'font': 'normal',
+					'font-family': 'Helvetica',
+					'font-weight': 'normal',
+					'font-color': 'black',
+					'line-color': 'black',
+					'element-color': 'black',
+					'fill': 'white',
+					'yes-text': 'yes',
+					'no-text': 'no',
+					'arrow-end': 'block',
+					'scale': 1,
+					'symbols': {
+						'start': {
+							'font-color': 'red',
+							'element-color': 'green',
+							'fill': 'yellow'
+						},
+						'end': {
+							'class': 'end-element'
+						}
+					},
+					'flowstate': {
+						'past': {
+							'fill': '#CCCCCC',
+							'font-size': 12
+						},
+						'current': {
+							'fill': 'yellow',
+							'font-color': 'red',
+							'font-weight': 'bold'
+						},
+						'future': {
+							'fill': '#FFFF99'
+						},
+						'request': {
+							'fill': 'blue'
+						},
+						'invalid': {
+							'fill': '#444444'
+						},
+						'approved': {
+							'fill': '#58C4A3',
+							'font-size': 12,
+							'yes-text': 'APPROVED',
+							'no-text': 'n/a'
+						},
+						'rejected': {
+							'fill': '#C45879',
+							'font-size': 12,
+							'yes-text': 'n/a',
+							'no-text': 'REJECTED'
+						}
+					}
+				});
+
+				$('[id^=sub1]').click(function () {
+					alert('info here');
+				});
+			})();
+		}
+
+		function myFunction(event, node) {
+			console.log("You just clicked this node:", node);
+		}
+
+	</script>
 </head>
 <!-- SET THE CONTROLLER -->
+
 <body ng-controller="mainController">
 	<div class="container">
 
-		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
+			<h2>AIDT Flowchart Log Analysis Graph System
+			</h2>
+		</div>
+		<div style="padding: 10px;background-color: #eeeeee;">
+			<form>
+				<div class="form-row align-items-center">
+					<div class="col-sm-3 my-1">
+						<label class="sr-only" for="inlineFormInputName">Name</label>
+						<input type="text" class="form-control" id="inlineFormInputName" placeholder="PAN0110037409449">
+					</div>
+
+
+					<div class="col-auto my-1">
+						<button type="submit" class="btn btn-primary" ng-click="drawGraphData()">Submit</button>
+					</div>
+				</div>
+			</form>
 		</div>
 
-		<!-- TODO LIST -->
+
 		<div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
+			<div class="col-sm-4 col-sm-offset-4" style="display:none">
 
-				
 
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+				<!-- ng-repeat="todo in todos" -->
+				<!-- ng-click="deleteTodo(todo._id)" -->
 				<div class="checkbox" ng-repeat="todo in todos">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
-					</label>
+					<ul>
+						<li class="chartData" ng-click="mydraw(todo.text)">
+							{{ todo.text }}
+							<!-- </li> <span  ng-click="deleteTodo(todo._id)" >Delete Flow</span> -->
+					</ul>
+
 				</div>
 
 				<p class="text-center" ng-show="loading">
@@ -56,28 +185,57 @@
 			</div>
 		</div>
 
-		<!-- FORM TO CREATE TODOS -->
 		<div id="todo-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
+				<div id="canvas"></div>
+				<!-- <form>
 					<div class="form-group">
 
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+
+						<textarea type="text"  style="width: 100%" class="form-control input-lg text-center" rows="11" placeholder="Add Flow"
+							ng-model="formData.text"></textarea>
 					</div>
 
-					<!-- createToDo() WILL CREATE NEW TODOS -->
+
 					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
-				</form>
+				</form> -->
 			</div>
 		</div>
 
-		<div class="text-center text-muted">
-			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
-			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
+
+
+
+		<div>
+
 		</div>
+		<div><button id="run" type="submit" class="btn btn-primary btn-lg" style="visibility: hidden;"
+				ng-click="createTodo()">Run</button></div>
+
+		<textarea id="code" style="width: 100%;visibility: hidden;" rows="11">
+			st=>start: Start|past:>http://www.google.com[blank]
+			e=>end: End:>http://www.google.com
+			op1=>operation: My Operation|past:$myFunction
+			op2=>operation: Stuff|current
+			sub1=>subroutine: My Subroutine|invalid
+			cond=>condition: Yes
+			or No?|approved:>http://www.google.com
+			c2=>condition: Good idea|rejected
+			io=>inputoutput: catch something...|request
+			para=>parallel: parallel tasks
+			
+			st->op1(right)->cond
+			cond(yes, right)->c2
+			cond(no)->para
+			c2(true)->io->e
+			c2(false)->e
+			
+			para(path1, bottom)->sub1(left)->op1
+			para(path2, right)->op2->e
+			
+			st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})@>c2({"stroke":"Red"})@>op2({"stroke":"Red"})@>e({"stroke":"Red"})</textarea>
 
 	</div>
 
 </body>
+
 </html>
